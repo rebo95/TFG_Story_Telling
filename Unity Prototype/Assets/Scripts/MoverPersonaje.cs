@@ -10,6 +10,8 @@ public class MoverPersonaje : MonoBehaviour {
     public float velocidadCorrer = 2f;
     [Tooltip("Layer de los objetos que no podrá atravesar (estos deben tener collider)")]
     public LayerMask layerColision;
+    [Tooltip("Layer de los objetos que no podrá atravesar (estos deben tener collider)")]
+    public LayerMask layerObject;
     [Tooltip("Tamaño de las casillas del Tilemap, si se usa el Tilemap de Unity será el CellSize del Grid")]
     public float tamanioCasilla = 1;
     public KeyCode teclaCorrer;
@@ -23,9 +25,10 @@ public class MoverPersonaje : MonoBehaviour {
     private Vector2 direccionRayo;
     private float velocidadActual;
 
-    Animator anim;
+    Stack<GameObject> bag;
 	private void Start ()
     {
+        bag = new Stack<GameObject>();
         siguientePosicion = transform.position;
         velocidadActual = velocidadAndar;
     }
@@ -36,7 +39,9 @@ public class MoverPersonaje : MonoBehaviour {
     {
         AsignarVelocidadMovimiento();
         AsignarDireccionMovimiento();
-        Mover();   
+        Mover();
+        TakeObject();
+        ReleaseObject();
     }
 
     private void AsignarVelocidadMovimiento()
@@ -101,7 +106,9 @@ public class MoverPersonaje : MonoBehaviour {
     private bool PuedeMoverseALaSiguienteCasilla()
     {
         //Si en la dirección del próximo movimiento hay un collider del layer definido como obstáculo no se puede mover
-        if(Physics2D.Raycast(rayOrigin.position, direccionRayo, tamanioCasilla/2.0f, layerColision))
+        RaycastHit2D rHitCollisions = Physics2D.Raycast(rayOrigin.position, direccionRayo, tamanioCasilla / 2.0f, layerColision);
+        RaycastHit2D rHitObject = Physics2D.Raycast(rayOrigin.position, direccionRayo, tamanioCasilla / 2.0f, layerObject);
+        if (rHitCollisions || rHitObject)
         {
             return false;
         }
@@ -113,5 +120,38 @@ public class MoverPersonaje : MonoBehaviour {
 
         return false;
     }
+
+    private void TakeObject()
+    {
+        if (Input.GetKeyDown(KeyCode.E)) {
+            //Si en la dirección del próximo movimiento hay un collider del layer definido como obstáculo no se puede mover
+            RaycastHit2D rHitObject = Physics2D.Raycast(rayOrigin.position, direccionRayo, tamanioCasilla / 2.0f, layerObject);
+            if (rHitObject)
+            {
+                Debug.Log("estoy recogiendo objeto)");
+                bag.Push(rHitObject.collider.gameObject);
+                rHitObject.collider.gameObject.SetActive(false);
+            }
+        }
+    }
     
+   private void ReleaseObject()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            if (bag.Count > 0)
+            {
+                //Si en la dirección del próximo movimiento hay un collider del layer definido como obstáculo no se puede mover
+                RaycastHit2D rHitCollisions = Physics2D.Raycast(rayOrigin.position, direccionRayo, tamanioCasilla / 2.0f, layerColision);
+                if (!rHitCollisions)
+                {
+                    GameObject collectible = bag.Peek();
+                    bag.Pop();
+
+                    collectible.transform.position = new Vector2(transform.position.x + direccionRayo.x, transform.position.y + direccionRayo.y);
+                    collectible.SetActive(true);
+                }
+            }
+        }
+    }
 }
