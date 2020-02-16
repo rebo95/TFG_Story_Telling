@@ -4,15 +4,6 @@ using UnityEngine;
 
 public class State : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    private List<Fact> _goldFacts;  // Facts that must occur to do the story
+    private List<Fact> _currentFacts;   // Facts that have ocurred
 }
