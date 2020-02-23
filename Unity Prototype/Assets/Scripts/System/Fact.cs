@@ -1,7 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class Fact : MonoBehaviour
+﻿public class Fact
 {
+    private string description;
+
+    public string Description { get => description; set => description = value; }
+
+    public Fact(string description)
+    {
+        Description = description;
+    }
 }

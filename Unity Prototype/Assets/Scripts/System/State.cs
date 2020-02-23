@@ -1,9 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
-public class State : MonoBehaviour
+public class State
 {
-    private List<Fact> _goldFacts;  // Facts that must occur to do the story
-    private List<Fact> _currentFacts;   // Facts that have ocurred
+    List<Character> characters;
+
+    public State(List<Character> characters)
+    {
+        this.Characters = characters;
+    }
+
+    public List<Character> Characters { get => characters; set => characters = value; }
 }

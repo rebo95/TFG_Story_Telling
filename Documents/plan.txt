@@ -1,0 +1,55 @@
+CLASS:
+- Personaje (A, B, C)
+- Objeto (Cerilla, Nota, Ron)
+- Lugar (Mazmorra, Tunel, Playa, Barco)
+
+FACTS:
+- A está en la mazmorra
+- B está en la mazmorra
+- A está en el túnel
+- B está en el túnel
+- A está en la playa
+- B está en la playa
+- A está en el barco
+- B está en el barco
+
+- La mazmorra está abierta
+- A tiene la cerilla
+- La cerilla está encendida
+- A tiene la nota
+- A ha leído la nota
+- B tiene la nota
+- B ha dicho que está cansado
+- B está sentado
+- A está sentado
+- A tiene ron
+
+- C existe
+- C está en la mazmorra
+- C está en el túnel
+- C está en la playa
+- C está en el barco
+- C ha dicho que tiene sed
+- C tiene ron
+- C carga con B
+
+GOAL:
+- La mazmorra está abierta
+- B está en el barco
+- A está en el barco
+
+OPERATORS:
+- Personaje X entra en lugar Y (MOVER)
+- Personaje X da objeto Y a personaje Z (DAR)
+- Personaje X utiliza objeto Y (USAR)
+- Personaje X habla con personaje Y (HABLAR)
+- Generar personaje C
+- A abre la mazmorra
+
+STATE:
+- Personajes: 
+	- Objetos que tiene:
+		- Usado / No Usado
+	- Lugar en el que está
+	- De pie / Sentado
+	- Activo / Cansado
