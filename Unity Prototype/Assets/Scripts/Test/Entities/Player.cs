@@ -2,11 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player
 {
-
+    [SerializeField]
     private int _posX = 0;
+
+    [SerializeField]
     private int _posY = 0;
+
+
+    public int PosX { get { return _posX; } set { _posX = value; PrintPosition(); } }
+    public int PosY { get { return _posY; } set { _posY = value; PrintPosition(); } }
 
     [SerializeField]
     private int _playerVel = 1;
@@ -15,49 +21,9 @@ public class Player : MonoBehaviour
 
     string _positionStirng = "";
 
-    // Update is called once per frame
-    void Update()
-    {
-        UpdatePosition();
-    }
-
-
-    void UpdatePosition()
-    {
-        if (HandleInput()) 
-            PrintPosition();
-    }
-
-    bool HandleInput()
-    {
-        
-
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            _posY++;
-            return true;
-        }
-        else if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            _posY--;
-            return true;
-        }
-        else if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            _posX--;
-            return true;
-        }
-        else if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            _posX++;
-            return true;
-        }
-
-        return false;
-    }
-
     void PrintPosition()
     {
+        
         _positionStirng = "(" + _posX + ", " + _posY + ")";
         Debug.Log(_positionStirng);
     }

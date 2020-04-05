@@ -230,10 +230,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1726066599}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20cb989511c6ebb4a97773290f940e3b, type: 3}
+  m_Script: {fileID: 11500000, guid: 4f7659b6653d0fd4586b745516920f90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerVel: 1
+  _objetiveMoney: 300
+  _numBags: 1
+  _boardRows: 6
+  _boardCols: 6
 --- !u!4 &1726066601
 Transform:
   m_ObjectHideFlags: 0
