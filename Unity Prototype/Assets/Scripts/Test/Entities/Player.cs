@@ -24,7 +24,7 @@ public class Player
     void PrintPosition()
     {
         
-        _positionStirng = "(" + _posX + ", " + _posY + ")";
+        _positionStirng = "Posicion del jugador : (" + _posX + ", " + _posY + ")";
         Debug.Log(_positionStirng);
     }
 }

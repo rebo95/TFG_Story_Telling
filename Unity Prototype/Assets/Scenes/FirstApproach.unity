@@ -234,7 +234,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _objetiveMoney: 300
-  _numBags: 2
+  _numBags: 4
   _boardRows: 6
   _boardCols: 6
 --- !u!4 &1726066601

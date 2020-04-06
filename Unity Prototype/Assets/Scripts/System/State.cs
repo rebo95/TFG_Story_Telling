@@ -10,7 +10,7 @@ public class State : MonoBehaviour
     private int _currentMoney = 0;
 
     [SerializeField]
-    private int _numBags = 2;
+    private int _numBags = 4;
 
     [SerializeField]
     private int _boardRows = 6, _boardCols = 6;
@@ -32,20 +32,34 @@ public class State : MonoBehaviour
         _money = new Money[_numBags];
         _board = new bool[_boardRows, _boardCols];
 
-        for (int i = 0; i < _money.Length; i++)
+        for (int i = 0; i < _numBags; i++)
             _money[i] = new Money();
 
 
         _money[0].PosX = 5;
-        _money[0].PosY = 1;
+        _money[0].PosY = 0;
         _money[0].Quantity = 200;
 
 
         _money[1].PosX = 0;
-        _money[1].PosY = 1;
+        _money[1].PosY = 0;
         _money[1].Quantity = 300;
 
-        _minDistance = Mathf.Sqrt((0 -_boardRows - 1) ^ 2 + (0 - _boardCols - 1 ) ^ 2);
+
+        _money[2].PosX = 0;
+        _money[2].PosY = 5;
+        _money[2].Quantity = 200;
+
+
+        _money[3].PosX = 3;
+        _money[3].PosY = 3;
+        _money[3].Quantity = 300;
+
+        _firstPlayer.PosX += 0;
+
+        _minDistance = Mathf.Sqrt(Mathf.Pow((0 - _boardRows - 1), 2)+ Mathf.Pow((0 - _boardCols - 1), 2));
+        LookForMinDistance();
+        PrintMinsDistanceInformation();
     }
 
 
@@ -55,6 +69,7 @@ public class State : MonoBehaviour
         {
             LookForMinDistance();
             PrintMinsDistanceInformation();
+            _minDistance = Mathf.Sqrt(Mathf.Pow((0 - _boardRows - 1), 2) + Mathf.Pow((0 - _boardCols - 1), 2));
         }
     }
 
@@ -90,14 +105,14 @@ public class State : MonoBehaviour
     {
         float distance = 0;
 
-        distance = Mathf.Sqrt( (p.PosX - m.PosX)^2 + (p.PosY - m.PosY)^2 );
+        distance = Mathf.Sqrt(Mathf.Pow((p.PosX - m.PosX), 2) + Mathf.Pow((p.PosY - m.PosY), 2));
 
         return distance;
     }
 
     void IsMinDistance(float distance, int index)
     {
-        if(distance < _minDistance)
+        if (distance <= _minDistance)
         {
             _minDistance = distance;
             _minDistanceIndex = index;
@@ -108,12 +123,13 @@ public class State : MonoBehaviour
     {
         for (int i = 0; i < _money.Length; i++)
         {
-            IsMinDistance(CalculateDistance(_firstPlayer, _money[i]), i);
+            float distance = CalculateDistance(_firstPlayer, _money[i]);
+            IsMinDistance(distance, i);
         }
     }
 
     void PrintMinsDistanceInformation()
     {
-        Debug.Log("Bolsa más cercana : " + "( " + _money[_minDistanceIndex].PosX + ", " + _money[_minDistanceIndex].PosY + ") ");
+       Debug.Log("Bolsa más cercana : " + "( " + _money[_minDistanceIndex].PosX + ", " + _money[_minDistanceIndex].PosY + ") ");
     }
 }
