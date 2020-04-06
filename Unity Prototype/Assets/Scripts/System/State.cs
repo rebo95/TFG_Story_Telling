@@ -6,6 +6,15 @@ public class State : MonoBehaviour
 {
 
     [SerializeField]
+    GameObject _objectMoney;
+    [SerializeField]
+    GameObject _objectPlayer;
+    [SerializeField]
+    GameObject _objectPosition;
+
+
+
+    [SerializeField]
     private int _objetiveMoney = 300;
     private int _currentMoney = 0;
 
@@ -60,6 +69,11 @@ public class State : MonoBehaviour
         _minDistance = Mathf.Sqrt(Mathf.Pow((0 - _boardRows - 1), 2)+ Mathf.Pow((0 - _boardCols - 1), 2));
         LookForMinDistance();
         PrintMinsDistanceInformation();
+
+
+        SetMoneyBagPosition();
+        SetPlayerPosition();
+        SetStandPointsPosition();
     }
 
 
@@ -79,23 +93,28 @@ public class State : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             _firstPlayer.PosY++;
+            UpdatePlayerPosition();
             return true;
         }
         else if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             _firstPlayer.PosY--;
+            UpdatePlayerPosition();
             return true;
         }
         else if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             _firstPlayer.PosX--;
+            UpdatePlayerPosition();
             return true;
         }
         else if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             _firstPlayer.PosX++;
+            UpdatePlayerPosition();
             return true;
         }
+
 
         return false;
 
@@ -131,5 +150,40 @@ public class State : MonoBehaviour
     void PrintMinsDistanceInformation()
     {
        Debug.Log("Bolsa más cercana : " + "( " + _money[_minDistanceIndex].PosX + ", " + _money[_minDistanceIndex].PosY + ") ");
+    }
+
+
+
+
+    int offset = 3;
+    void SetStandPointsPosition()
+    {
+        for(int i = 0; i < _boardRows; i++)
+        {
+            for (int j = 0; j < _boardRows; j++)
+            {
+                Instantiate(_objectPosition, new Vector3(j - offset, i - offset, 0), new Quaternion(0,0,0,0));
+            }
+        }
+    }
+
+    GameObject _movableObjectPlayer;
+    void SetPlayerPosition()
+    {
+        _movableObjectPlayer = Instantiate(_objectPlayer, new Vector3(_firstPlayer.PosX - offset, _firstPlayer.PosY - offset, 0), new Quaternion(0, 0, 0, 0));
+ 
+    }
+
+    void SetMoneyBagPosition()
+    {
+        for (int i = 0; i < _numBags; i++)
+        {
+            Instantiate(_objectMoney, new Vector3(_money[i].PosX - offset, _money[i].PosY - offset, 0), new Quaternion(0, 0, 0, 0));
+        }
+    }
+
+    void UpdatePlayerPosition()
+    {
+        _movableObjectPlayer.transform.position = new Vector3(_firstPlayer.PosX - offset, _firstPlayer.PosY - offset, 1);
     }
 }

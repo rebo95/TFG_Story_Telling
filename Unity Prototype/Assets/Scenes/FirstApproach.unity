@@ -175,7 +175,7 @@ Camera:
   field of view: 60
   orthographic: 1
   orthographic size: 5
-  m_Depth: -1
+  m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -233,6 +233,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f7659b6653d0fd4586b745516920f90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _objectMoney: {fileID: 354193048185482282, guid: b0b82d9d50f3cdf4a99ed38c8241aa47,
+    type: 3}
+  _objectPlayer: {fileID: 6465413387726427281, guid: b25dd1d5c48b4c740bc8eccaa80ad2ef,
+    type: 3}
+  _objectPosition: {fileID: 770106676643283014, guid: 34a05c8ff4b7e9248abd496069872b8d,
+    type: 3}
   _objetiveMoney: 300
   _numBags: 4
   _boardRows: 6
