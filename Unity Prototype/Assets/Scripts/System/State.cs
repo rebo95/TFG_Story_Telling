@@ -20,7 +20,7 @@ public class State : MonoBehaviour
     private Money[] _money;
 
 
-    private int[,] _board;
+    private bool[,] _board;
 
     private float _minDistance;
     private int _minDistanceIndex = 0;
@@ -30,7 +30,10 @@ public class State : MonoBehaviour
     void Start()
     {
         _money = new Money[_numBags];
-        _board = new int[_boardRows, _boardCols];
+        _board = new bool[_boardRows, _boardCols];
+
+        for (int i = 0; i < _money.Length; i++)
+            _money[i] = new Money();
 
 
         _money[0].PosX = 5;
@@ -85,11 +88,11 @@ public class State : MonoBehaviour
 
     float  CalculateDistance(Player p, Money m)
     {
-        float distnace = 0;
+        float distance = 0;
 
-        distnace = Mathf.Sqrt( (p.PosX - m.PosX)^2 + (p.PosY - m.PosY)^2 );
+        distance = Mathf.Sqrt( (p.PosX - m.PosX)^2 + (p.PosY - m.PosY)^2 );
 
-        return distnace;
+        return distance;
     }
 
     void IsMinDistance(float distance, int index)
