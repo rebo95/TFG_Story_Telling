@@ -10,7 +10,6 @@ public class Player
     [SerializeField]
     private int _posY = 0;
 
-
     public int PosX { get { return _posX; } set { _posX = value; PrintPosition(); } }
     public int PosY { get { return _posY; } set { _posY = value; PrintPosition(); } }
 
