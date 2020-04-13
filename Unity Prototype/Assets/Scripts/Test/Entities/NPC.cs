@@ -50,6 +50,11 @@ public class NPC : MonoBehaviour
     {
         _moneyBagPosX = posX;
         _moneyBagPosY = posY;
+
+        if (_moneyBagPosY == _posY)
+            _finalPosYReached = true;
+        if (_moneyBagPosX == _posX)
+            _finalPosXReached = true;
     }
 
     public void LookForTarget()
