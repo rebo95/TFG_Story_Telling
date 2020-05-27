@@ -1,0 +1,26 @@
+Importante formular conceptos y definir claramente el objetivo del trabajo
+y par qué está destinado. Explicar que es un juego y la relación que 
+existe entre ambas.
+
+Tenemos que hablar del problema que estamos tratando y hacer una  buena
+descripción del problema.
+
+Problema -> Solución 
+
+Cuando hay una historia interactiva ... experiencia hacia estado objetivo 
+
+Objetivos en ambitos de historia y qué elementos van a definirla.
+
+Precisión + detalle
+
+Documentar el experimento ... más adelante justificación del experimento
+
+
+
+	Dejar claro el problema y cómo lo solucionamos, explicación de cómo vamos a llegar a la solución 
+
+	Prototipo y mapeo hacia el álgebra 
+
+	Corregir el discurso del documento
+
+

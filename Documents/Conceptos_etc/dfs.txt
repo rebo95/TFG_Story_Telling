@@ -1,0 +1,6 @@
+- recibes estado
+- puedes ponerle un limite de profundidad (wow!)
+- preguntas si es objetivo (Director.isGoal(estado))
+- si no lo es, llamas a la funcion de expandir (expand(Director, State))
+	- llamas a la funcion sucesora del director para ese estado
+	- coges el primero y le aplicas dfs de manera recursiva
